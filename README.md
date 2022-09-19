@@ -14,7 +14,7 @@ If you create a new folder for your test case, **add the path** to the [include.
 ### Create go-bindata for new YAML files
 If you have some **new YAML files** used in your code, you have to generate the bindata first.
 Run `make update` to update the bindata. For example, you can see the bindata has been updated after running the `make update` as follows:
-```console
+```
 $ git status
 	modified:   test/extended/testdata/bindata.go
 	new file:   test/extended/testdata/olm/etcd-subscription-manual.yaml
@@ -22,7 +22,7 @@ $ git status
 
 ### Compile the executable binary
 Note that we use the `go module` for package management, the previous `go path` is deprecated.
-```console
+```
 $ git clone git@github.com:openshift/openshift-tests-private.git
 $ cd openshift-tests-private/
 $ make build
@@ -34,7 +34,7 @@ $ ls -hl ./bin/extended-platform-tests
 
 ## Contribution 
 Below are the general steps for submitting a PR to master branch. First, you should **Fork** this repo to your own Github account.
-```console
+```
 $ git remote add <Your Name> git@github.com:<Your Github Account>/openshift-tests-private.git
 $ git pull origin master
 $ git checkout -b <Branch Name>
@@ -53,25 +53,25 @@ And then there will be a prompt in your Github repo console to open a PR, click 
 
 ### Run the automation test case
 The binary finds the test case via searching for the test case title. It searches the test case titles by RE (`Regular Expression`). So, you can filter your test cases by using `grep`. Such as, if I want to run all [OLM test cases](https://github.com/openshift/openshift-tests-private/blob/master/test/extended/operators/olm.go#L21), and all of them contain the `OLM` letter, I can use the `grep OLM` to filter them, as follows: 
-```console
+```
 $ ./bin/extended-platform-tests run all --dry-run | grep "OLM" | ./bin/extended-platform-tests run -f -
 I0624 22:48:36.599578 2404223 test_context.go:419] Tolerating taints "node-role.kubernetes.io/master" when considering if nodes are ready
 "[sig-operators] OLM for an end user handle common object Author:kuiwang-Medium-22259-marketplace operator CR status on a running cluster [Exclusive] [Serial]"
 ...
 ```
 You can save the above output to a file and run it:
-```console
+```
 $ ./bin/extended-platform-tests run -f <your file path/name>
 ```
 If you want to run a test case, such as `g.It("Author:jiazha-Critical-23440-can subscribe to the etcd operator  [Serial]"`, since the `TestCaseID` is unique, you can do:
-```console
+```
 $ ./bin/extended-platform-tests run all --dry-run|grep "23440"|./bin/extended-platform-tests run --junit-dir=./ -f -
 ```
 
 ### Debugging
 #### Keep generated temporary project
 Sometime, we want to **keep the generated namespace for debugging**. Just add the Env Var: `export DELETE_NAMESPACE=false`. These random namespaces will be kept, like below:
-```console
+```
 ...
 Dec 18 09:39:33.448: INFO: Running AfterSuite actions on all nodes
 Dec 18 09:39:33.448: INFO: Waiting up to 7m0s for all (but 100) nodes to be ready
@@ -88,7 +88,7 @@ e2e-test-olm-a-a92jyymd-pr8hx                      Active   4m29s
 ```
 #### Print cluster event on Terminal
 When you execute cases, there are some cluster event which is printed to the terminal, like
-```console
+```
 Timeline:
 
 Mar 30 03:57:36.435 I ns/openshift-kube-controller-manager pod/kube-controller-manager-ip-10-0-190-60.ec2.internal created SCC ranges for e2e-test-olm-common-l21c9cfo-g6xwx namespace
@@ -104,7 +104,7 @@ In default, it does not print the cluster event on the terminal when you execute
 
 ### Compile the executable binary
 Note that we use the `go module` for package management, the previous `go path` is deprecated.
-```console
+```
 $ git clone git@github.com:openshift/openshift-tests-private.git
 $ cd openshift-tests-private/
 $ make build
@@ -116,25 +116,25 @@ $ ls -hl ./bin/extended-platform-tests
 
 ### Run the automation test case
 The binary finds the test case via searching for the test case title. It searches the test case titles by RE (`Regular Expression`). So, you can filter your test cases by using `grep`. Such as, if I want to run all [OLM test cases](https://github.com/openshift/openshift-tests-private/blob/master/test/extended/operators/olm.go#L21), and all of them contain the `OLM` letter, I can use the `grep OLM` to filter them, as follows: 
-```console
+```
 $ ./bin/extended-platform-tests run all --dry-run | grep "OLM" | ./bin/extended-platform-tests run -f -
 I0624 22:48:36.599578 2404223 test_context.go:419] Tolerating taints "node-role.kubernetes.io/master" when considering if nodes are ready
 "[sig-operators] OLM for an end user handle common object Author:kuiwang-Medium-22259-marketplace operator CR status on a running cluster [Exclusive] [Serial]"
 ...
 ```
 You can save the above output to a file and run it:
-```console
+```
 $ ./bin/extended-platform-tests run -f <your file path/name>
 ```
 If you want to run a test case, such as `g.It("Author:jiazha-Critical-23440-can subscribe to the etcd operator  [Serial]"`, since the `TestCaseID` is unique, you can do:
-```console
+```
 $ ./bin/extended-platform-tests run all --dry-run|grep "23440"|./bin/extended-platform-tests run --junit-dir=./ -f -
 ```
 
 ### Debugging
 #### Keep generated temporary project
 Sometime, we want to **keep the generated namespace for debugging**. Just add the Env Var: `export DELETE_NAMESPACE=false`. These random namespaces will be kept, like below:
-```console
+```
 ...
 Dec 18 09:39:33.448: INFO: Running AfterSuite actions on all nodes
 Dec 18 09:39:33.448: INFO: Waiting up to 7m0s for all (but 100) nodes to be ready
@@ -151,7 +151,7 @@ e2e-test-olm-a-a92jyymd-pr8hx                      Active   4m29s
 ```
 #### Print cluster event on Terminal
 When you execute cases, there are some cluster event which is printed to the terminal, like
-```console
+```
 Timeline:
 
 Mar 30 03:57:36.435 I ns/openshift-kube-controller-manager pod/kube-controller-manager-ip-10-0-190-60.ec2.internal created SCC ranges for e2e-test-olm-common-l21c9cfo-g6xwx namespace
